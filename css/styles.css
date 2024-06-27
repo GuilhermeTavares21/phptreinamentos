@@ -1,0 +1,16 @@
+.navbar {
+    background-color: #f1f1f1;
+    height: 100px;
+}
+
+.verde {
+    color: #255c01 !important;
+}
+
+.logo {
+    object-fit: cover;
+    height: 100px;
+    position: absolute;
+    top: 1px;
+    left: 10px;
+}

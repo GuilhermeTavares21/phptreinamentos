@@ -28,16 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Login</title>
 </head>
 <body>
-    <div class="flex flex-col justify-center items-center h-[100vh]">
+    <div class="flex flex-col pt-[60px] items-center h-[100vh]">
         <form method="POST" class="flex flex-col h-[500px] gap-4 mx-auto w-[400px] rounded-2xl p-10 border shadow-md" action="login.php">
-            <h2 class="text-center font-bold text-white text-[30px]">Entrar</h2>
-            <?php if (isset($error)): ?>
+            <h2 class="verde text-center font-bold text-[30px]">Entrar</h2>
+            <?php if (isset($error)): ?>a
                 <p style="color: red;"><?php echo $error; ?></p>
             <?php endif; ?>
             <?php if (isset($_GET['message'])): ?>
                 <p style="color: green;"><?php echo htmlspecialchars($_GET['message']); ?></p>
             <?php endif; ?>
-            <p class="text-white">Usuário:</p>
+            <p class="">Usuário:</p>
             <label class="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </svg>
             <input name="username" type="text" class="grow" placeholder="Usuário" />
             </label>
-            <p class="text-white">Senha:</p>
+            <p class="">Senha:</p>
             <label class="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
