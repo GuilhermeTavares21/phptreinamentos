@@ -26,10 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
     <div class="flex flex-col pt-[60px] items-center h-[100vh]">
-        <form method="POST" class="flex flex-col h-[500px] gap-4 mx-auto w-[400px] rounded-2xl p-10 border shadow-md" action="login.php">
+        <form method="POST" class="flex flex-col h-[460px] gap-4 mx-auto w-[400px] rounded-2xl p-10 border shadow-md" action="login.php">
             <h2 class="verde text-center font-bold text-[30px]">Entrar</h2>
             <?php if (isset($error)): ?>a
                 <p style="color: red;"><?php echo $error; ?></p>
@@ -63,8 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </svg>
             <input name="password" type="password" class="grow" value="" />
             </label>
-            <button class="btn btn-primary" type="submit">Entrar</button>
-            <a class="btn btn-accent" href="register.php">Registrar</a>
+            <div class="flex justify-between mt-14">
+                <a class="btn btn-accent w-[30%]" href="register.php">Registrar</a>
+                <button class="btn btn-primary w-[30%]" type="submit">Entrar</button>
+            </div>
         </form>
     </div>
 </body>

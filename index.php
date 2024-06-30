@@ -10,9 +10,35 @@ if (!isset($_SESSION['user_id'])) {
     
 include_once ("head.php");
 require 'db.php';
-    
-$stmt = $pdo->query('SELECT * FROM treinamentos');
+
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$data_inicial = isset($_GET['data_inicial']) ? $_GET['data_inicial'] : '';
+$data_final = isset($_GET['data_final']) ? $_GET['data_final'] : '';
+$sql = 'SELECT * FROM treinamentos WHERE 1=1';
+$params = [];
+
+if ($search) {
+    $sql .= ' AND (nome_treinamento LIKE ? OR entidade LIKE ? OR tecnico LIKE ?)';
+    $params[] = '%' . $search . '%';
+    $params[] = '%' . $search . '%';
+    $params[] = '%' . $search . '%';
+}
+
+if ($data_inicial) {
+    $sql .= ' AND data_inicial >= ?';
+    $params[] = $data_inicial;
+}
+
+if ($data_final) {
+    $sql .= ' AND data_final <= ?';
+    $params[] = $data_final;
+}
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+
 $treinamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -23,38 +49,57 @@ $treinamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <div class="container mx-auto">
     <div class="flex justify-between my-6">
-        <h1 class="text-white text-2xl font-bold">Lista de treinamentos:</h1>
+        <h1 class="text-2xl font-bold">Lista de treinamentos:</h1>
         <a class="btn btn-primary text-white" href="create.php">Cadastrar Treinamento</a>
     </div>
-    <!-- <a class="btn btn-error" href="logout.php">Sair da conta </a> -->
+
+    <div class="mb-4">
+    <form method="GET" action="">
+            <input type="text" name="search" placeholder="Pesquisar por nome ou entidade" value="<?php echo htmlspecialchars($search); ?>" class="input input-bordered w-full max-w-xs mr-6">
+            <span> De:  </span>
+            <input type="date" name="data_inicial" value="<?php echo htmlspecialchars($data_inicial); ?>" class="input input-bordered w-[160px]">
+            <span> até </span>
+            <input type="date" name="data_final" value="<?php echo htmlspecialchars($data_final); ?>" class="input input-bordered w-[160px] mr-6">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </form>
+    </div>
+
     <div class="overflow-x-auto">
         <table class="table table-zebra">
             <thead>
-            <tr>
+            <tr class="font-bold text-black">
                 <th>ID</th>
                 <th>Nome do Treinamento</th>
                 <th>Responsável</th>
                 <th>Entidade</th>
                 <th>Horas</th>
-                <th>Data do Treinamento</th>
+                <th>Data Inicial</th>
+                <th>Data Final</th>
                 <th>Ações</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($treinamentos as $treinamento): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($treinamento['id']); ?></td>
-                    <td><?php echo htmlspecialchars($treinamento['nome_treinamento']); ?></td>
-                    <td><?php echo htmlspecialchars($treinamento['tecnico']); ?></td>
-                    <td><?php echo htmlspecialchars($treinamento['entidade']); ?></td>
-                    <td><?php echo htmlspecialchars($treinamento['horas']); ?></td>
-                    <td><?php echo htmlspecialchars($treinamento['data_treinamento']); ?></td>
-                    <td>
-                        <a href="update.php?id=<?php echo $treinamento['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a onclick="my_modal_1.showModal()"><i class="fa-solid fa-trash"></i></a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+            <?php if(count($treinamentos) > 0): ?>
+                <?php foreach ($treinamentos as $treinamento): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($treinamento['id']); ?></td>
+                            <td><?php echo htmlspecialchars($treinamento['nome_treinamento']); ?></td>
+                            <td><?php echo htmlspecialchars($treinamento['tecnico']); ?></td>
+                            <td><?php echo htmlspecialchars($treinamento['entidade']); ?></td>
+                            <td><?php echo htmlspecialchars($treinamento['horas']); ?></td>
+                            <td><?php echo htmlspecialchars($treinamento['data_inicial']); ?></td>
+                            <td><?php echo htmlspecialchars($treinamento['data_final']); ?></td>
+                            <td class="flex gap-4">
+                                <a class="text-green-600 cursor-pointer" href="update.php?id=<?php echo $treinamento['id']; ?>"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                <a class="text-red-600 cursor-pointer" onclick="my_modal_1.showModal()"><i class="fa-solid fa-trash"></i>Deletar</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="7" class="text-center text-xl">Não há treinamentos disponíveis.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
