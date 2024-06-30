@@ -15,11 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome_treinamento = $_POST['nome_treinamento'];
     $entidade = $_POST['entidade'];
     $horas = $_POST['horas'];
-    $data_treinamento = $_POST['data_treinamento'];
+    $data_inicial = $_POST['data_inicial'];
+    $data_final = $_POST['data_final'];
     $responsavel = $_POST['responsavel'];
 
-    $stmt = $pdo->prepare('INSERT INTO treinamentos (nome_treinamento, entidade, data_treinamento, tecnico, horas) VALUES (?, ?, ?, ?, ?)');
-    $stmt->execute([$nome_treinamento, $entidade, $data_treinamento, $responsavel, $horas]);
+    $stmt = $pdo->prepare('INSERT INTO treinamentos (nome_treinamento, entidade, data_inicial, data_final, tecnico, horas) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$nome_treinamento, $entidade, $data_inicial, $data_final, $responsavel, $horas]);
 
     header('Location: index.php');
     exit;
@@ -33,15 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="flex flex-col justify-center items-center h-[100vh]">
-        <form method="POST" class="flex flex-col h-[750px] gap-4 mx-auto w-[500px] rounded-2xl p-10 border shadow-md" action="create.php">
-            <h2 class="text-center font-bold text-white text-[30px]">Cadastrar treinamento: </h2>
+        <form method="POST" class="flex flex-col h-[800px] gap-4 mx-auto w-[500px] rounded-2xl p-10 border shadow-md" action="create.php">
+            <h2 class="text-center font-bold  text-[30px]">Cadastrar treinamento: </h2>
             <?php if (isset($error)): ?>
                 <p style="color: red;"><?php echo $error; ?></p>
             <?php endif; ?>
             <?php if (isset($_GET['message'])): ?>
                 <p style="color: green;"><?php echo htmlspecialchars($_GET['message']); ?></p>
             <?php endif; ?>
-            <p class="text-white">Conteudo: </p>
+            <p class="">Conteudo: </p>
             <label class="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </svg>
             <input name="nome_treinamento" type="text" class="grow" placeholder="Conteudo" />
             </label>
-            <p class="text-white">Responsável: </p>
+            <p class="">Responsável: </p>
             <label class="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </svg>
             <input name="responsavel" type="text" class="grow" placeholder="Responsável" />
             </label>
-            <p class="text-white">Entidade: </p>
+            <p class="">Entidade: </p>
             <label class="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,16 +80,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </svg>
             <input name="entidade" type="text" class="grow" placeholder="Entidade"/>
             </label>
-            <p class="text-white">Horas: </p>
+            <p class="">Horas: </p>
             <label class="input input-bordered flex items-center gap-2">
             <input name="horas" type="text" class="grow" placeholder="Horas"/>
             </label>
-            <p class="text-white">Data do Treinamento: </p>
+            <p class="">Data Inicial: </p>
             <label class="input input-bordered flex items-center gap-2">
-            <input name="data_treinamento" type="date" class="grow" />
+            <input name="data_inicial" type="date" class="grow" />
             </label>
-            <button class="btn btn-accent" type="submit">Cadastrar</button>
-            <a class="btn btn-warning" href="index.php">Voltar</a>
+            </label>
+            <p class="">Data Final: </p>
+            <label class="input input-bordered flex items-center gap-2">
+            <input name="data_final" type="date" class="grow" />
+            </label>
+            <div class="flex justify-between">
+                <a class="btn btn-warning w-[30%]" href="index.php">Voltar</a>
+                <button class="btn btn-accent w-[30%]" type="submit">Cadastrar</button>
+            </div>
         </form>
     </div>
 </body>

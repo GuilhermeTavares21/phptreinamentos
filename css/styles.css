@@ -7,6 +7,10 @@
     color: #255c01 !important;
 }
 
+.btn-primary {
+    background-color: #255c01 !important;
+}
+
 .logo {
     object-fit: cover;
     height: 100px;

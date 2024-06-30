@@ -30,8 +30,9 @@ $token = isset($_GET['token']) ? $_GET['token'] : '';
   <div class="card-body">
     <p>O Token irá expirar depois de 30 segundos.</p>
     <div class="card-actions justify-end">
-        <form method="POST" action="process_token.php">
-            <button type="submit" class="btn btn-primary m-2">Gerar</button>
+        <form class="flex w-full justify-between mt-5" method="POST" action="process_token.php">
+            <a class="btn btn-warning" href="index.php"> Voltar </a>
+            <button type="submit" class="btn btn-primary">Gerar</button>
         </form>
     </div>
   </div>
