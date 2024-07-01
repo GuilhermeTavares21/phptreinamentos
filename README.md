@@ -1,2 +1,2 @@
 # CRUD criado para controlar treinamentos.
-### Utilizado de PHP e Mysql
+### Utilizado PHP e Mysql
