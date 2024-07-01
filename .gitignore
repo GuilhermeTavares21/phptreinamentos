@@ -1,0 +1,5 @@
+db*
+.env
+
+db.php
+db_backup2.php
