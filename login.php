@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="css/styles.css" />

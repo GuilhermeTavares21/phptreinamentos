@@ -41,8 +41,8 @@ $treinamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html data-theme="light">
 <head>
     <title>Treinamentos</title>
 </head>
@@ -51,6 +51,7 @@ $treinamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="flex justify-between my-6">
         <h1 class="text-2xl font-bold">Lista de treinamentos:</h1>
         <a class="btn btn-primary text-white" href="create.php">Cadastrar Treinamento</a>
+        
     </div>
 
     <div class="mb-4">
@@ -60,7 +61,8 @@ $treinamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <input type="date" name="data_inicial" value="<?php echo htmlspecialchars($data_inicial); ?>" class="input input-bordered w-[160px]">
             <span> até </span>
             <input type="date" name="data_final" value="<?php echo htmlspecialchars($data_final); ?>" class="input input-bordered w-[160px] mr-6">
-            <button type="submit" class="btn btn-primary">Pesquisar</button>
+            <button type="submit" class="btn btn-primary text-white"><i class="fa-solid fa-magnifying-glass"></i>Pesquisar</button>
+            <a class="btn btn-success text-white" href="export_excel.php?search=<?php echo urlencode($search); ?>&data_inicial=<?php echo urlencode($data_inicial); ?>&data_final=<?php echo urlencode($data_final); ?>"><i class="fa-solid fa-download"></i>Baixar Tabela</a>
         </form>
     </div>
 

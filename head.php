@@ -1,7 +1,7 @@
 <?php
   include_once 'header.php';
 ?>
-<div class="navbar shadow-md">
+<div data-theme="light" class="navbar shadow-md">
   <div class="flex-1">
     <a class="btn btn-ghost text-xl"><img class="logo" src="img/asi-logo.png"></a>
   </div>

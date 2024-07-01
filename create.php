@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
 <head>
     <title>Adicionar Treinamento</title>
 </head>
