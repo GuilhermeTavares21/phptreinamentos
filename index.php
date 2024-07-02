@@ -55,19 +55,21 @@ $treinamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <div class="mb-4">
-    <form method="GET" action="">
+        <form method="GET" action="">
             <input type="text" name="search" placeholder="Pesquisar por nome ou entidade" value="<?php echo htmlspecialchars($search); ?>" class="input input-bordered w-full max-w-xs mr-6">
             <span> De:  </span>
             <input type="date" name="data_inicial" value="<?php echo htmlspecialchars($data_inicial); ?>" class="input input-bordered w-[160px]">
             <span> até </span>
             <input type="date" name="data_final" value="<?php echo htmlspecialchars($data_final); ?>" class="input input-bordered w-[160px] mr-6">
             <button type="submit" class="btn btn-primary text-white"><i class="fa-solid fa-magnifying-glass"></i>Pesquisar</button>
-            <a class="btn btn-success text-white" href="export_excel.php?search=<?php echo urlencode($search); ?>&data_inicial=<?php echo urlencode($data_inicial); ?>&data_final=<?php echo urlencode($data_final); ?>"><i class="fa-solid fa-download"></i>Baixar Tabela</a>
         </form>
+    </div>
+    <div class="mb-4">
+        <button id="btnExport" class="btn btn-success text-white"><i class="fa-solid fa-download"></i>Baixar Tabela</button>
     </div>
 
     <div class="overflow-x-auto">
-        <table class="table table-zebra">
+        <table id="divTabela" class="table table-zebra">
             <thead>
             <tr class="font-bold text-black">
                 <th>ID</th>
@@ -118,5 +120,8 @@ $treinamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
   </div>
 </dialog>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
