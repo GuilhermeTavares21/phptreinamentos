@@ -18,3 +18,30 @@
     top: 1px;
     left: 10px;
 }
+.navmenu {
+    display: flex;
+}
+.dropdown {
+    display: none;
+}
+#formulario {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 800px) {
+    #formulario {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+@media (max-width: 600px) {
+    .navmenu {
+        display: none;
+    }
+    .dropdown {
+        display: block;
+    }
+    
+}

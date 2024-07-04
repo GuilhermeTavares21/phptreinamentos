@@ -12,7 +12,7 @@ $token = isset($_GET['token']) ? $_GET['token'] : '';
 ?>
 
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
 <head>
     <title>Gerar Token</title>
 </head>

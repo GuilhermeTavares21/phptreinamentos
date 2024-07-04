@@ -28,14 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
 <head>
     <title>Adicionar Treinamento</title>
 </head>
 <body>
-    <div class="flex flex-col justify-center items-center h-[100vh]">
-        <form method="POST" class="flex flex-col h-[800px] gap-4 mx-auto w-[500px] rounded-2xl p-10 border shadow-md" action="create.php">
-            <h2 class="text-center font-bold  text-[30px]">Cadastrar treinamento: </h2>
+    <div class="flex flex-col mt-20 justify-center items-center h-[100vh]">
+        <form method="POST" class="flex flex-col h-[800px] gap-4 mx-auto w-[50%] min-w-[350px] max-w-[500px] rounded-2xl p-10 border shadow-md" action="create.php">
+            <h2 class="text-center font-bold text-[23px] md:text-[30px]">Cadastrar treinamento: </h2>
             <?php if (isset($error)): ?>
                 <p style="color: red;"><?php echo $error; ?></p>
             <?php endif; ?>

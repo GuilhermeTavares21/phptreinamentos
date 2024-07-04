@@ -23,14 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
     <div class="flex flex-col pt-[60px] items-center h-[100vh]">
-        <form method="POST" class="flex flex-col h-[460px] gap-4 mx-auto w-[400px] rounded-2xl p-10 border shadow-md" action="login.php">
+        <form method="POST" class="flex flex-col h-[460px] gap-4 mx-auto w-[50%] min-w-[350px] max-w-[400px] rounded-2xl p-10 border shadow-md" action="login.php">
             <h2 class="verde text-center font-bold text-[30px]">Entrar</h2>
             <?php if (isset($error)): ?>a
                 <p style="color: red;"><?php echo $error; ?></p>
